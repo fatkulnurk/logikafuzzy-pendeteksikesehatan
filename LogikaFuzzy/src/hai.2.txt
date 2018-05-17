@@ -1,0 +1,92 @@
+package main
+
+import (
+	"fmt"
+)
+
+const MAX  = 1000
+
+type Data struct {
+	key int
+	label string
+	min float32
+	max float32
+}
+
+var Tinggi float32
+var Berat float32
+
+func main(){
+	var tempNum 	float32
+	var tempNum2 	float32
+	var counter 	int
+	//var lastMax		float32
+	//var lastMin		float32
+	//var tempBerat	float32
+	//var tempBerat2	float32
+	var tempKeyBerat    float32
+	var tempKeyTinggi   float32
+
+	var aturanTinggi = []Data{
+		{key:1,label:"sangat pendek",min:0,max:120},
+		{key:2,label:"pendek",min:115,max:145},
+		{key:3,label:"sedang",min:140,max:165},
+		{key:4,label:"tinggi",min:160,max:185},
+		{key:5,label:"sangat tinggi",min:180,max:MAX},
+	}
+	var aturanBerat = []Data{
+		{key:1,label:"sangat kurus",min:0,max:45},
+		{key:2,label:"kurus",min:40,max:55},
+		{key:3,label:"biasa",min:50,max:65},
+		{key:4,label:"berat",min:60,max:85},
+		{key:5,label:"sangat berat",min:80,max:MAX},
+	}
+	fmt.Println("Hello",aturanBerat,aturanTinggi)
+
+	fmt.Print("Masukan Tingi anda : ")
+	fmt.Scanf("%f",&Tinggi)
+	fmt.Println("tinggi anda adalah ",Tinggi)
+	counter = 0
+	for _,at := range aturanTinggi {
+		if(counter == 1){
+			break
+		}
+		if (Tinggi < at.max) && (Tinggi > at.min){
+
+			tempNum = (at.max - Tinggi) / (at.max - (at.max-5))
+			tempNum2 = (Tinggi - (at.max-5)) / (at.max - (at.max-5))
+
+			// fmt.Println("ada pada label ",at.label)
+			fmt.Println("Nilai tempnum adalah ",tempNum)
+			fmt.Println("Nilai tempnum2 adalah ",tempNum2)
+			counter++
+		}
+	}
+
+	fmt.Println("----------------------------")
+	fmt.Print("Masukan Berat anda : ")
+	fmt.Scanf("%f",&Berat)
+
+
+	counter = 0
+	for _,ab := range aturanBerat {
+		if(counter == 1){
+			break
+		}
+		if (Berat < ab.max) && (Berat > ab.min){
+
+			tempNum = (ab.max - Berat) / (ab.max - (ab.max-5))
+			tempNum2 = (Berat - (ab.max-5)) / (ab.max - (ab.max-5))
+
+			fmt.Println("ada pada label ",ab.label)
+			fmt.Println("Nilai tempnum adalah ",tempNum)
+			fmt.Println("Nilai tempnum2 adalah ",tempNum2)
+			counter++
+		}
+	}
+
+
+	_=tempNum
+	_=Tinggi
+	_=Berat
+}
